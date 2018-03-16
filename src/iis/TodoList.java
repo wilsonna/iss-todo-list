@@ -2,6 +2,7 @@ package iis;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -25,13 +26,14 @@ public class TodoList {
 		}
 	}
 
-	public Set<TodoItem> getAllItems() {
-		return new HashSet<TodoItem>(list);
+	public List<TodoItem> getAllItems() {
+		return list;
 	}
 
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
 		Scanner reader = new Scanner(System.in); // Reading from System.in
+		TodoList list = new TodoList();
 		int choice = -1;
 		do {
 			System.out.println("*************************************");
@@ -46,6 +48,27 @@ public class TodoList {
 			System.out.print("Enter you choice > ");
 			
 			choice = reader.nextInt();
+			switch(choice)
+			{
+			case 1:
+				List<TodoItem> items = list.getAllItems();
+				System.out.println("Number of item=" + items.size() );
+				for(int item=0; item<items.size(); item++)
+				{
+					System.out.println ((item+1) + ". " + items.get(item).getDescription());
+					
+				}
+				break;
+				
+			case 2: 
+				System.out.print("Enter description > ");	
+				String desr = reader.next();
+				System.out.println(desr);
+				
+				list.addItem(new TodoItem(desr));
+				break;
+			
+			}
 		} while (choice != 0);
 
 		System.out.print("Exited :)");
