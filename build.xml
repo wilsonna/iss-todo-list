@@ -4,7 +4,7 @@
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. -->
-<project basedir="." default="build" name="StackAnnotationProject">
+<project basedir="." default="build" name="TDD">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse"/>
     <property name="junit.output.dir" value="junit"/>
@@ -42,11 +42,11 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="StackAnnotationProject.classpath"/>
+            <classpath refid="TDD.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" source="${source}" target="${target}">
             <src path="test"/>
-            <classpath refid="StackAnnotationProject.classpath"/>
+            <classpath refid="TDD.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -68,24 +68,23 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="test.MyStringStackTest" todir="${junit.output.dir}"/>
-            <classpath refid="StackAnnotationProject.classpath"/>
+            <classpath refid="TDD.classpath"/>
         </junit>
     </target>
     <target name="AllTests">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="test.AllTests" todir="${junit.output.dir}"/>
-            <classpath refid="StackAnnotationProject.classpath"/>
+            <test name="test.TodoListTest" todir="${junit.output.dir}"/>
+            <classpath refid="TDD.classpath"/>
         </junit>
     </target>
     <target name="StackAnnotationProject">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
-            <test name="test.AllTests" todir="${junit.output.dir}"/>
-            <test name="test.MyStringStackTest" todir="${junit.output.dir}"/>
-            <classpath refid="StackAnnotationProject.classpath"/>
+            <test name="test.TodoListTest" todir="${junit.output.dir}"/>
+            <classpath refid="TDD.classpath"/>
         </junit>
     </target>
     <target name="junitreport">
