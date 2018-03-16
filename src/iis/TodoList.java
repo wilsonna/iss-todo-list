@@ -28,5 +28,12 @@ public class TodoList {
 		return new HashSet<TodoItem>(list);
 	}
 
+	public static void main(String[] args) {
+		System.out.println("1. List items");
+		System.out.println("2. Add item");
+		System.out.println("3. Delete item");
+		System.out.println("4. Edit item");
+		System.out.println("5. Mark item");
+	}
 
 }
